@@ -29,11 +29,6 @@ const translations = {
       title: "เลือกจากตู้ขนมวันนี้",
       copy: "รายการนี้อ้างอิงจากภาพเคาน์เตอร์ใน TikTok สต็อกจริงอาจเปลี่ยนตามวัน",
     },
-    menuFeatured: {
-      eyebrow: "เมนูเด่น",
-      title: "มินิทาร์ตผลไม้รวม",
-      copy: "ทาร์ตกรอบครีมนุ่ม แต่งองุ่นเขียว สตรอว์เบอร์รี่ บลูเบอร์รี่ และแยมส้ม",
-    },
     filters: { all: "ทั้งหมด", cake: "เค้ก", pastry: "พาย", gift: "จัดกล่อง" },
     story: {
       eyebrow: "จาก TikTok สู่การสั่งซื้อ",
@@ -115,11 +110,6 @@ const translations = {
       eyebrow: "Online cake counter",
       title: "Choose from today's display",
       copy: "Products are based on the TikTok counter photo. Stock can change by day.",
-    },
-    menuFeatured: {
-      eyebrow: "Featured item",
-      title: "Signature mixed fruit tart",
-      copy: "Crisp mini tart with cream, green grape, strawberry, blueberry, and citrus jam.",
     },
     filters: { all: "All", cake: "Cakes", pastry: "Pastry", gift: "Gift sets" },
     story: {
@@ -203,11 +193,6 @@ const translations = {
       title: "從今日櫃檯挑選",
       copy: "商品以 TikTok 截圖中的櫃檯甜點為基礎，實際庫存可依當日調整。",
     },
-    menuFeatured: {
-      eyebrow: "主打商品",
-      title: "招牌綜合水果塔",
-      copy: "酥脆迷你塔搭配鮮奶油、青葡萄、草莓、藍莓與柑橘果醬。",
-    },
     filters: { all: "全部", cake: "蛋糕", pastry: "派點", gift: "禮盒" },
     story: {
       eyebrow: "從 TikTok 到訂單",
@@ -269,7 +254,7 @@ const products = [
     price: 55,
     image: "assets/mixed-fruit-tart-ai.png",
     featured: true,
-    badge: { th: "เมนูซิกเนเจอร์", en: "Signature pick", zh: "招牌主打" },
+    badge: { th: "เมนูแนะนำ", en: "Recommended", zh: "主推" },
     name: { th: "มินิทาร์ตผลไม้รวม", en: "Signature mixed fruit tart", zh: "招牌綜合水果塔" },
     desc: {
       th: "ทาร์ตกรอบครีมนุ่ม แต่งองุ่นเขียว สตรอว์เบอร์รี่ บลูเบอร์รี่ และแยมส้ม",
