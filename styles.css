@@ -288,31 +288,24 @@ h3 {
 
 .featured-section {
   display: grid;
-  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(16rem, 0.88fr) minmax(0, 1.12fr);
   gap: clamp(1.5rem, 5vw, 4rem);
   align-items: center;
 }
 
 .featured-media {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
-  align-items: center;
+  display: block;
   justify-self: center;
-  width: min(100%, 26rem);
+  width: min(100%, 24rem);
 }
 
 .featured-media img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   border-radius: 8px;
   object-fit: cover;
-  object-position: center 62%;
-  box-shadow: 0 12px 32px rgba(25, 34, 45, 0.12);
-}
-
-.featured-media img:first-child {
-  transform: translateY(0.8rem);
+  object-position: center;
+  box-shadow: var(--shadow);
 }
 
 .featured-copy {
@@ -374,6 +367,42 @@ h3 {
   max-width: 100%;
   margin-bottom: 1.25rem;
   overflow-x: auto;
+}
+
+.menu-featured-card {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(185, 50, 85, 0.28);
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: linear-gradient(90deg, rgba(185, 50, 85, 0.08), rgba(255, 255, 255, 0.94));
+  box-shadow: 0 10px 28px rgba(25, 34, 45, 0.07);
+}
+
+.menu-featured-card img {
+  width: 9rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.menu-featured-card h3 {
+  margin-bottom: 0.35rem;
+}
+
+.menu-featured-card p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.menu-featured-action {
+  display: grid;
+  gap: 0.65rem;
+  justify-items: end;
 }
 
 .product-grid {
@@ -771,12 +800,25 @@ h3 {
   }
 
   .featured-media {
-    gap: 0.65rem;
     width: min(100%, 22rem);
   }
 
-  .featured-media img:first-child {
-    transform: translateY(0.45rem);
+  .menu-featured-card {
+    grid-template-columns: 7rem minmax(0, 1fr);
+  }
+
+  .menu-featured-card img {
+    width: 7rem;
+  }
+
+  .menu-featured-action {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+  }
+
+  .menu-featured-action .price {
+    justify-self: start;
   }
 
   .section {
