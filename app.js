@@ -2,9 +2,9 @@ const translations = {
   th: {
     nav: { menu: "เมนู", story: "หน้าร้าน", order: "สั่งซื้อ" },
     hero: {
-      eyebrow: "สดจากตู้หน้าร้าน",
-      copy: "เค้กผลไม้ คัสตาร์ดถ้วย และพายอบสีทอง พร้อมรับออเดอร์ออนไลน์",
-      ctaPrimary: "เลือกขนม",
+      eyebrow: "ทาร์ตผลไม้ซิกเนเจอร์",
+      copy: "มินิทาร์ตกรอบ หอมครีม แต่งองุ่นเขียว สตรอว์เบอร์รี่ บลูเบอร์รี่ และแยมส้มชิ้นเล็ก",
+      ctaPrimary: "จองทาร์ต",
       ctaSecondary: "ดู TikTok",
     },
     stats: {
@@ -14,6 +14,15 @@ const translations = {
       twoText: "องุ่น บลูเบอร์รี่ และสตรอว์เบอร์รี่",
       threeTitle: "จองล่วงหน้า",
       threeText: "สั่งก่อนของหมดจากหน้าร้าน",
+    },
+    featured: {
+      eyebrow: "เมนูซิกเนเจอร์ใหม่",
+      title: "มินิทาร์ตผลไม้รวม",
+      copy: "ฐานทาร์ตกรอบ ครีมนุ่ม ผลไม้สด และแยมส้มสีสด เหมาะกับซื้อเป็นชิ้นหรือจัดกล่องของฝาก",
+      tagOne: "ผลไม้สดแต่งหน้า",
+      tagTwo: "มินิทาร์ต 1 ชิ้น",
+      tagThree: "แนะนำให้จองล่วงหน้า",
+      cta: "เพิ่มจากเมนู",
     },
     menu: {
       eyebrow: "เคาน์เตอร์ออนไลน์",
@@ -75,9 +84,9 @@ const translations = {
   en: {
     nav: { menu: "Menu", story: "Counter", order: "Order" },
     hero: {
-      eyebrow: "Fresh from the counter",
-      copy: "Fruit cakes, pudding cups, and golden pastries ready for online orders.",
-      ctaPrimary: "Shop cakes",
+      eyebrow: "Signature fruit tart",
+      copy: "A crisp mini tart topped with green grape, strawberry, blueberry, cream, and a bright citrus finish.",
+      ctaPrimary: "Reserve the tart",
       ctaSecondary: "TikTok",
     },
     stats: {
@@ -87,6 +96,15 @@ const translations = {
       twoText: "Grape, blueberry, and strawberry",
       threeTitle: "Order ahead",
       threeText: "Reserve before the counter sells out",
+    },
+    featured: {
+      eyebrow: "New signature",
+      title: "Signature mixed fruit tart",
+      copy: "Crisp tart shell, soft cream, green grape, strawberry, blueberry, and a small citrus jam accent.",
+      tagOne: "Fresh fruit topping",
+      tagTwo: "Single-serve mini tart",
+      tagThree: "Best reserved ahead",
+      cta: "Add from the menu",
     },
     menu: {
       eyebrow: "Online cake counter",
@@ -148,9 +166,9 @@ const translations = {
   zh: {
     nav: { menu: "菜單", story: "店面", order: "訂購" },
     hero: {
-      eyebrow: "每日櫃檯現做",
-      copy: "水果小蛋糕、布丁杯與金黃派點，直接線上預訂。",
-      ctaPrimary: "選購甜點",
+      eyebrow: "招牌水果塔",
+      copy: "酥脆迷你塔殼，搭配鮮奶油、青葡萄、草莓、藍莓與一點柑橘果醬。",
+      ctaPrimary: "預留水果塔",
       ctaSecondary: "看 TikTok",
     },
     stats: {
@@ -160,6 +178,15 @@ const translations = {
       twoText: "青葡萄、藍莓與草莓口味",
       threeTitle: "可先預訂",
       threeText: "熱門品項售完前先保留",
+    },
+    featured: {
+      eyebrow: "新主打",
+      title: "招牌綜合水果塔",
+      copy: "酥脆塔殼、柔滑鮮奶油、新鮮水果與亮橘果醬點綴，適合單顆購買或做成禮盒。",
+      tagOne: "新鮮水果裝飾",
+      tagTwo: "單人份迷你塔",
+      tagThree: "建議提前預訂",
+      cta: "從菜單加入",
     },
     menu: {
       eyebrow: "線上甜點櫃",
@@ -221,6 +248,20 @@ const translations = {
 };
 
 const products = [
+  {
+    id: "mixed-fruit-tart",
+    category: "cake",
+    price: 55,
+    image: "assets/mixed-fruit-tart-2.jpg",
+    featured: true,
+    badge: { th: "เมนูซิกเนเจอร์", en: "Signature pick", zh: "招牌主打" },
+    name: { th: "มินิทาร์ตผลไม้รวม", en: "Signature mixed fruit tart", zh: "招牌綜合水果塔" },
+    desc: {
+      th: "ทาร์ตกรอบครีมนุ่ม แต่งองุ่นเขียว สตรอว์เบอร์รี่ บลูเบอร์รี่ และแยมส้ม",
+      en: "Crisp mini tart with cream, green grape, strawberry, blueberry, and citrus jam.",
+      zh: "酥脆迷你塔搭配鮮奶油、青葡萄、草莓、藍莓與柑橘果醬。",
+    },
+  },
   {
     id: "mango-pudding",
     category: "cake",
@@ -366,7 +407,7 @@ function renderProducts() {
   productGrid.innerHTML = visibleProducts
     .map(
       (product) => `
-        <article class="product-card">
+        <article class="product-card${product.featured ? " featured-product-card" : ""}">
           <div class="product-media">
             <img src="${product.image}" alt="${product.name[state.lang]}">
             <span class="product-badge">${product.badge[state.lang]}</span>
