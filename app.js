@@ -2,9 +2,9 @@ const translations = {
   th: {
     nav: { menu: "เมนู", story: "หน้าร้าน", order: "สั่งซื้อ" },
     hero: {
-      eyebrow: "ทาร์ตผลไม้ซิกเนเจอร์",
-      copy: "มินิทาร์ตกรอบ หอมครีม แต่งองุ่นเขียว สตรอว์เบอร์รี่ บลูเบอร์รี่ และแยมส้มชิ้นเล็ก",
-      ctaPrimary: "จองทาร์ต",
+      eyebrow: "ขนมอบสดใหม่จากร้าน",
+      copy: "ทาร์ตผลไม้ซิกเนเจอร์ เค้กครีมสด คัสตาร์ดถ้วย และพายอบสีทอง พร้อมรับออเดอร์ออนไลน์",
+      ctaPrimary: "เลือกเมนูเด่น",
       ctaSecondary: "ดู TikTok",
     },
     stats: {
@@ -84,9 +84,9 @@ const translations = {
   en: {
     nav: { menu: "Menu", story: "Counter", order: "Order" },
     hero: {
-      eyebrow: "Signature fruit tart",
-      copy: "A crisp mini tart topped with green grape, strawberry, blueberry, cream, and a bright citrus finish.",
-      ctaPrimary: "Reserve the tart",
+      eyebrow: "Fresh bakery favorites",
+      copy: "Signature fruit tart, fresh cream cakes, pudding cups, and golden pastries ready for online orders.",
+      ctaPrimary: "Shop signatures",
       ctaSecondary: "TikTok",
     },
     stats: {
@@ -166,9 +166,9 @@ const translations = {
   zh: {
     nav: { menu: "菜單", story: "店面", order: "訂購" },
     hero: {
-      eyebrow: "招牌水果塔",
-      copy: "酥脆迷你塔殼，搭配鮮奶油、青葡萄、草莓、藍莓與一點柑橘果醬。",
-      ctaPrimary: "預留水果塔",
+      eyebrow: "新鮮烘焙主打",
+      copy: "招牌水果塔、鮮奶油蛋糕、布丁杯與金黃派點，直接線上預訂。",
+      ctaPrimary: "選購主打",
       ctaSecondary: "看 TikTok",
     },
     stats: {
