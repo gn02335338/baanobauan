@@ -286,6 +286,73 @@ h3 {
   line-height: 1.45;
 }
 
+.promo-section {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.promo-video-frame {
+  justify-self: center;
+  width: min(100%, 19rem);
+  overflow: hidden;
+  border: 1px solid rgba(30, 38, 48, 0.18);
+  border-radius: 8px;
+  background: #101820;
+  box-shadow: var(--shadow);
+}
+
+.promo-video-frame video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background: #101820;
+}
+
+.promo-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.promo-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.promo-copy .button {
+  width: max-content;
+  min-width: 12rem;
+}
+
+.promo-points {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.promo-points li {
+  position: relative;
+  padding-left: 1.55rem;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.promo-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: var(--blue);
+}
+
 .featured-section {
   display: grid;
   grid-template-columns: minmax(16rem, 0.88fr) minmax(0, 1.12fr);
@@ -686,6 +753,7 @@ h3 {
   }
 
   .quick-strip,
+  .promo-section,
   .featured-section,
   .product-grid,
   .story-section,
@@ -752,6 +820,7 @@ h3 {
   }
 
   .hero-actions .button,
+  .promo-copy .button,
   .featured-copy .button,
   .form-actions .button,
   .add-button {

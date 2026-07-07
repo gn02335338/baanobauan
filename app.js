@@ -1,6 +1,6 @@
 const translations = {
   th: {
-    nav: { menu: "เมนู", story: "หน้าร้าน", order: "สั่งซื้อ" },
+    nav: { promo: "วิดีโอ", menu: "เมนู", story: "หน้าร้าน", order: "สั่งซื้อ" },
     hero: {
       eyebrow: "ขนมอบสดใหม่จากร้าน",
       copy: "ทาร์ตผลไม้ซิกเนเจอร์ เค้กครีมสด คัสตาร์ดถ้วย และพายอบสีทอง พร้อมรับออเดอร์ออนไลน์",
@@ -14,6 +14,16 @@ const translations = {
       twoText: "องุ่น บลูเบอร์รี่ และสตรอว์เบอร์รี่",
       threeTitle: "จองล่วงหน้า",
       threeText: "สั่งก่อนของหมดจากหน้าร้าน",
+    },
+    promo: {
+      eyebrow: "สดจากหน้าร้าน",
+      title: "ดูก่อนสั่งจากตู้ขนมวันนี้",
+      copy: "วิดีโอสั้นช่วยให้ลูกค้าเห็นบรรยากาศร้านจริงก่อนเลือกทาร์ตผลไม้ คัสตาร์ดถ้วย และพายอบ",
+      pointOne: "เห็นบรรยากาศหน้าร้านจริง",
+      pointTwo: "เพิ่มความมั่นใจก่อนสั่งออนไลน์",
+      pointThree: "เข้ากับลูกค้าที่มาจาก TikTok",
+      cta: "เลือกจากเมนู",
+      videoFallback: "เบราว์เซอร์นี้ไม่รองรับวิดีโอโปรโมตร้าน",
     },
     featured: {
       eyebrow: "เมนูซิกเนเจอร์ใหม่",
@@ -82,7 +92,7 @@ const translations = {
     },
   },
   en: {
-    nav: { menu: "Menu", story: "Counter", order: "Order" },
+    nav: { promo: "Video", menu: "Menu", story: "Counter", order: "Order" },
     hero: {
       eyebrow: "Fresh bakery favorites",
       copy: "Signature fruit tart, fresh cream cakes, pudding cups, and golden pastries ready for online orders.",
@@ -96,6 +106,16 @@ const translations = {
       twoText: "Grape, blueberry, and strawberry",
       threeTitle: "Order ahead",
       threeText: "Reserve before the counter sells out",
+    },
+    promo: {
+      eyebrow: "Fresh from the counter",
+      title: "See today's sweets before you order",
+      copy: "A short shop video gives customers the real counter feeling before they choose fruit tarts, pudding cups, and pastries.",
+      pointOne: "Shows the actual shop atmosphere",
+      pointTwo: "Builds trust before online ordering",
+      pointThree: "Pairs naturally with TikTok visitors",
+      cta: "Choose from the menu",
+      videoFallback: "Your browser does not support this promotional video.",
     },
     featured: {
       eyebrow: "New signature",
@@ -164,7 +184,7 @@ const translations = {
     },
   },
   zh: {
-    nav: { menu: "菜單", story: "店面", order: "訂購" },
+    nav: { promo: "影片", menu: "菜單", story: "店面", order: "訂購" },
     hero: {
       eyebrow: "新鮮烘焙主打",
       copy: "招牌水果塔、鮮奶油蛋糕、布丁杯與金黃派點，直接線上預訂。",
@@ -178,6 +198,16 @@ const translations = {
       twoText: "青葡萄、藍莓與草莓口味",
       threeTitle: "可先預訂",
       threeText: "熱門品項售完前先保留",
+    },
+    promo: {
+      eyebrow: "櫃檯新鮮實拍",
+      title: "下單前先看看今日甜點",
+      copy: "短影片能讓客人先感受真實店面氛圍，再挑選水果塔、布丁杯與派點。",
+      pointOne: "呈現真實店面氣氛",
+      pointTwo: "提升線上下單信任感",
+      pointThree: "承接從 TikTok 點進來的客人",
+      cta: "前往菜單選購",
+      videoFallback: "你的瀏覽器不支援播放這段宣傳影片。",
     },
     featured: {
       eyebrow: "新主打",

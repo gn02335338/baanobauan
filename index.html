@@ -21,6 +21,7 @@
       </a>
 
       <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#promo" data-i18n="nav.promo">Video</a>
         <a href="#menu" data-i18n="nav.menu">Menu</a>
         <a href="#story" data-i18n="nav.story">Story</a>
         <a href="#order" data-i18n="nav.order">Order</a>
@@ -62,6 +63,36 @@
         <div>
           <strong data-i18n="stats.threeTitle">Order ahead</strong>
           <span data-i18n="stats.threeText">Reserve before the counter sells out</span>
+        </div>
+      </section>
+
+      <section class="section promo-section" id="promo" aria-labelledby="promo-title">
+        <div class="promo-video-frame">
+          <video
+            src="assets/baanobauan-promo.mp4"
+            poster="assets/tiktok-shop-display.png"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            preload="metadata"
+          >
+            <span data-i18n="promo.videoFallback">Your browser does not support this promotional video.</span>
+          </video>
+        </div>
+        <div class="promo-copy">
+          <p class="eyebrow" data-i18n="promo.eyebrow">Fresh from the counter</p>
+          <h2 id="promo-title" data-i18n="promo.title">See today’s sweets before you order</h2>
+          <p data-i18n="promo.copy">
+            A short shop video gives customers the real counter feeling before they choose fruit tarts, pudding cups, and pastries.
+          </p>
+          <ul class="promo-points" aria-label="Promotional video highlights">
+            <li data-i18n="promo.pointOne">Shows the actual shop atmosphere</li>
+            <li data-i18n="promo.pointTwo">Builds trust before online ordering</li>
+            <li data-i18n="promo.pointThree">Pairs naturally with TikTok visitors</li>
+          </ul>
+          <a class="button primary" href="#menu" data-i18n="promo.cta">Choose from the menu</a>
         </div>
       </section>
 
