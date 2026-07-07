@@ -295,20 +295,21 @@ h3 {
 
 .promo-video-frame {
   justify-self: center;
-  width: min(100%, 19rem);
+  width: min(100%, 34rem);
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border: 1px solid rgba(30, 38, 48, 0.18);
   border-radius: 8px;
-  background: #101820;
+  background: var(--surface);
   box-shadow: var(--shadow);
 }
 
 .promo-video-frame video {
   display: block;
   width: 100%;
-  aspect-ratio: 9 / 16;
+  height: 100%;
   object-fit: cover;
-  background: #101820;
+  background: var(--surface);
 }
 
 .promo-copy {
