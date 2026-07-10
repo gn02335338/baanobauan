@@ -7,6 +7,9 @@
   let selectedProductId = data.products[0]?.id || "";
   let selectedArticleId = data.articles[0]?.id || "";
   const pendingUploads = new Map();
+  const i18n = window.BaanAdminI18n;
+  const t = (key, values) => i18n.t(key, values);
+  let connectionStatus = "disconnected";
 
   const $ = (selector) => document.querySelector(selector);
   const status = $("#admin-status");
@@ -20,6 +23,14 @@
     status.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
+  function localized(value) {
+    return value?.[i18n.language] || value?.en || value?.th || value?.zh || "";
+  }
+
+  function renderConnectionStatus() {
+    connectionState.textContent = t(connectionStatus);
+  }
+
   function config() {
     return {
       owner: $("#github-owner").value.trim(),
@@ -31,7 +42,7 @@
 
   async function github(path, options = {}) {
     const { owner, repo, token } = config();
-    if (!owner || !repo || !token) throw new Error("請先填入 GitHub repository 與權杖。");
+    if (!owner || !repo || !token) throw new Error(t("configMissing"));
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}${path}`, {
       ...options,
       headers: {
@@ -43,7 +54,7 @@
     });
     if (!response.ok) {
       const detail = await response.json().catch(() => ({}));
-      throw new Error(detail.message || `GitHub 回應錯誤 ${response.status}`);
+      throw new Error(detail.message || t("githubError", { status: response.status }));
     }
     return response.json();
   }
@@ -63,7 +74,7 @@
 
   function parseContentJs(source) {
     const match = source.match(/^window\.BAAN_CONTENT\s*=\s*([\s\S]*);\s*$/);
-    if (!match) throw new Error("content.js 格式無法辨識。");
+    if (!match) throw new Error(t("contentFormatError"));
     return JSON.parse(match[1]);
   }
 
@@ -85,8 +96,8 @@
 
   function stageImage(file, previousPath) {
     if (!file) return previousPath;
-    if (!file.type.match(/^image\/(jpeg|png|webp)$/)) throw new Error("圖片只支援 JPG、PNG 或 WebP。");
-    if (file.size > 8 * 1024 * 1024) throw new Error("圖片需小於 8 MB。");
+    if (!file.type.match(/^image\/(jpeg|png|webp)$/)) throw new Error(t("imageTypeError"));
+    if (file.size > 8 * 1024 * 1024) throw new Error(t("imageSizeError"));
     if (pendingUploads.has(previousPath)) pendingUploads.delete(previousPath);
     const path = `assets/uploads/${sanitizeFileName(file.name)}`;
     pendingUploads.set(path, file);
@@ -97,7 +108,7 @@
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => resolve(String(reader.result).split(",")[1]);
-      reader.onerror = () => reject(new Error(`無法讀取圖片 ${file.name}`));
+      reader.onerror = () => reject(new Error(t("imageReadError", { name: file.name })));
       reader.readAsDataURL(file);
     });
   }
@@ -106,8 +117,8 @@
     $("#social-settings").innerHTML = data.site.socials.map((social) => `
       <div class="social-setting" data-social-id="${social.id}">
         <div><strong>${social.network}</strong><small>${social.id}</small></div>
-        <label><span>網址</span><input name="url" type="url" value="${escapeAttr(social.url)}" placeholder="https://..."></label>
-        <label class="check-field"><input name="enabled" type="checkbox" ${social.enabled ? "checked" : ""}><span>顯示</span></label>
+        <label><span data-admin-i18n="socialUrl">URL</span><input name="url" type="url" value="${escapeAttr(social.url)}" placeholder="https://..."></label>
+        <label class="check-field"><input name="enabled" type="checkbox" ${social.enabled ? "checked" : ""}><span data-admin-i18n="socialVisible">Show</span></label>
       </div>
     `).join("");
   }
@@ -126,7 +137,7 @@
   }
 
   function renderProductSelect() {
-    $("#product-select").innerHTML = data.products.map((product) => `<option value="${escapeAttr(product.id)}">${escapeAttr(product.name.zh || product.name.en || product.id)}</option>`).join("");
+    $("#product-select").innerHTML = data.products.map((product) => `<option value="${escapeAttr(product.id)}">${escapeAttr(localized(product.name) || product.id)}</option>`).join("");
     if (!data.products.some((product) => product.id === selectedProductId)) selectedProductId = data.products[0]?.id || "";
     $("#product-select").value = selectedProductId;
     fillProductForm();
@@ -154,9 +165,9 @@
     const form = new FormData(productForm);
     const nextId = String(form.get("id")).trim();
     const duplicate = data.products.some((item) => item.id === nextId && item.id !== selectedProductId);
-    if (duplicate) throw new Error("商品代碼已存在，請換一個英文代碼。");
+    if (duplicate) throw new Error(t("duplicateProduct"));
     const index = data.products.findIndex((item) => item.id === selectedProductId);
-    if (index < 0) throw new Error("找不到目前商品。");
+    if (index < 0) throw new Error(t("productNotFound"));
     const current = data.products[index];
     const image = stageImage(productForm.elements.imageFile.files[0], String(form.get("image")).trim());
     data.products[index] = {
@@ -171,7 +182,7 @@
     };
     if (current.id !== nextId) selectedProductId = nextId;
     renderProductSelect();
-    setStatus("商品草稿已儲存，尚未發布到 GitHub。", "success");
+    setStatus(t("productSaved"), "success");
     updateSummary();
     return true;
   }
@@ -187,21 +198,21 @@
     selectedProductId = id;
     renderProductSelect();
     productForm.elements.id.focus();
-    setStatus("已建立新商品草稿，請填寫內容後按「儲存商品草稿」。");
+    setStatus(t("productCreated"));
   }
 
   function deleteProduct() {
     const product = data.products.find((item) => item.id === selectedProductId);
-    if (!product || !confirm(`確定刪除「${product.name.zh || product.name.en}」？發布後才會從網站移除。`)) return;
+    if (!product || !confirm(t("confirmDeleteProduct", { name: localized(product.name) }))) return;
     data.products = data.products.filter((item) => item.id !== selectedProductId);
     selectedProductId = data.products[0]?.id || "";
     renderProductSelect();
     updateSummary();
-    setStatus("商品已從草稿刪除，尚未發布。", "success");
+    setStatus(t("productDeleted"), "success");
   }
 
   function renderArticleSelect() {
-    $("#article-select").innerHTML = data.articles.map((article) => `<option value="${escapeAttr(article.id)}">${escapeAttr(article.title.zh || article.title.en || article.id)}</option>`).join("");
+    $("#article-select").innerHTML = data.articles.map((article) => `<option value="${escapeAttr(article.id)}">${escapeAttr(localized(article.title) || article.id)}</option>`).join("");
     if (!data.articles.some((article) => article.id === selectedArticleId)) selectedArticleId = data.articles[0]?.id || "";
     $("#article-select").value = selectedArticleId;
     fillArticleForm();
@@ -233,9 +244,9 @@
     const form = new FormData(articleForm);
     const nextId = String(form.get("id")).trim();
     const duplicate = data.articles.some((item) => item.id === nextId && item.id !== selectedArticleId);
-    if (duplicate) throw new Error("文章代碼已存在，請換一個英文代碼。");
+    if (duplicate) throw new Error(t("duplicateArticle"));
     const index = data.articles.findIndex((item) => item.id === selectedArticleId);
-    if (index < 0) throw new Error("找不到目前文章。");
+    if (index < 0) throw new Error(t("articleNotFound"));
     const current = data.articles[index];
     const image = stageImage(articleForm.elements.imageFile.files[0], String(form.get("image")).trim());
     data.articles[index] = {
@@ -250,7 +261,7 @@
     if (current.id !== nextId) selectedArticleId = nextId;
     data.articles.sort((a, b) => b.date.localeCompare(a.date));
     renderArticleSelect();
-    setStatus("文章草稿已儲存，尚未發布到 GitHub。", "success");
+    setStatus(t("articleSaved"), "success");
     updateSummary();
     return true;
   }
@@ -267,32 +278,32 @@
     selectedArticleId = id;
     renderArticleSelect();
     articleForm.elements.id.focus();
-    setStatus("已建立新文章草稿，請填寫後按「儲存文章草稿」。");
+    setStatus(t("articleCreated"));
   }
 
   function deleteArticle() {
     const article = data.articles.find((item) => item.id === selectedArticleId);
-    if (!article || !confirm(`確定刪除「${article.title.zh || article.title.en}」？發布後才會從網站移除。`)) return;
+    if (!article || !confirm(t("confirmDeleteArticle", { name: localized(article.title) }))) return;
     data.articles = data.articles.filter((item) => item.id !== selectedArticleId);
     selectedArticleId = data.articles[0]?.id || "";
     renderArticleSelect();
     updateSummary();
-    setStatus("文章已從草稿刪除，尚未發布。", "success");
+    setStatus(t("articleDeleted"), "success");
   }
 
   function updateSummary() {
     $("#publish-summary").innerHTML = `
-      <div><strong>${data.products.length}</strong><span>項商品</span></div>
-      <div><strong>${data.articles.length}</strong><span>篇介紹文</span></div>
-      <div><strong>${data.site.socials.filter((item) => item.enabled && item.url).length}</strong><span>個公開社群連結</span></div>
-      <div><strong>${pendingUploads.size}</strong><span>張待上傳圖片</span></div>
+      <div><strong>${data.products.length}</strong><span>${t("productsCount")}</span></div>
+      <div><strong>${data.articles.length}</strong><span>${t("articlesCount")}</span></div>
+      <div><strong>${data.site.socials.filter((item) => item.enabled && item.url).length}</strong><span>${t("socialsCount")}</span></div>
+      <div><strong>${pendingUploads.size}</strong><span>${t("uploadsCount")}</span></div>
     `;
   }
 
   async function connect() {
     const button = $("#connect-github");
     button.disabled = true;
-    setStatus("正在從 GitHub 讀取最新內容…");
+    setStatus(t("connecting"));
     try {
       const { branch } = config();
       const file = await github(`/contents/content.js?ref=${encodeURIComponent(branch)}`);
@@ -302,11 +313,13 @@
       selectedProductId = data.products[0]?.id || "";
       selectedArticleId = data.articles[0]?.id || "";
       renderAll();
-      connectionState.textContent = "已連接";
+      connectionStatus = "connected";
+      renderConnectionStatus();
       connectionState.classList.add("connected");
-      setStatus("已讀取 GitHub 上的最新內容，可以開始編輯。", "success");
+      setStatus(t("connectSuccess"), "success");
     } catch (error) {
-      connectionState.textContent = "連接失敗";
+      connectionStatus = "connectionFailed";
+      renderConnectionStatus();
       connectionState.classList.remove("connected");
       setStatus(error.message, "error");
     } finally {
@@ -320,13 +333,13 @@
     try {
       saveSocials();
       const { branch } = config();
-      setStatus("正在確認 GitHub 最新版本…");
+      setStatus(t("checkingLatest"));
       const current = await github(`/contents/content.js?ref=${encodeURIComponent(branch)}`);
       remoteSha = current.sha;
       let completed = 0;
       for (const [path, file] of pendingUploads) {
         completed += 1;
-        setStatus(`正在上傳圖片 ${completed}/${pendingUploads.size}：${file.name}`);
+        setStatus(t("uploadingImage", { current: completed, total: pendingUploads.size, name: file.name }));
         await github(`/contents/${path}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -337,7 +350,7 @@
           })
         });
       }
-      setStatus("正在提交網站內容…");
+      setStatus(t("submittingContent"));
       const result = await github("/contents/content.js", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -351,9 +364,9 @@
       remoteSha = result.content.sha;
       pendingUploads.clear();
       updateSummary();
-      setStatus("發布完成。GitHub 已收到更新，請等 Zeabur 自動重新部署後再查看網站。", "success");
+      setStatus(t("publishSuccess"), "success");
     } catch (error) {
-      setStatus(`發布失敗：${error.message}`, "error");
+      setStatus(t("publishFailed", { message: error.message }), "error");
     } finally {
       button.disabled = false;
     }
@@ -364,6 +377,19 @@
     renderProductSelect();
     renderArticleSelect();
     updateSummary();
+    renderConnectionStatus();
+    i18n.apply();
+  }
+
+  function localizeRecordOptions() {
+    document.querySelectorAll("#product-select option").forEach((option) => {
+      const product = data.products.find((item) => item.id === option.value);
+      if (product) option.textContent = localized(product.name) || product.id;
+    });
+    document.querySelectorAll("#article-select option").forEach((option) => {
+      const article = data.articles.find((item) => item.id === option.value);
+      if (article) option.textContent = localized(article.title) || article.id;
+    });
   }
 
   document.querySelectorAll("[data-admin-tab]").forEach((button) => {
@@ -372,7 +398,7 @@
       document.querySelectorAll("[data-admin-panel]").forEach((panel) => panel.classList.toggle("active", panel.dataset.adminPanel === button.dataset.adminTab));
     });
   });
-  $("#settings-form").addEventListener("submit", (event) => { event.preventDefault(); saveSocials(); updateSummary(); setStatus("社群設定草稿已儲存，尚未發布。", "success"); });
+  $("#settings-form").addEventListener("submit", (event) => { event.preventDefault(); saveSocials(); updateSummary(); setStatus(t("settingsSaved"), "success"); });
   $("#product-select").addEventListener("change", (event) => { selectedProductId = event.target.value; fillProductForm(); });
   $("#article-select").addEventListener("change", (event) => { selectedArticleId = event.target.value; fillArticleForm(); });
   productForm.addEventListener("submit", (event) => { event.preventDefault(); try { saveProduct(); } catch (error) { setStatus(error.message, "error"); } });
@@ -383,6 +409,11 @@
   $("#delete-article").addEventListener("click", deleteArticle);
   $("#connect-github").addEventListener("click", connect);
   $("#publish-content").addEventListener("click", publish);
+  document.addEventListener("baanadminlanguagechange", () => {
+    localizeRecordOptions();
+    updateSummary();
+    renderConnectionStatus();
+  });
 
   renderAll();
 })();

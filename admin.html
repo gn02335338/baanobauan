@@ -1,99 +1,107 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="th">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>網站管理 | Baan Ob Auan</title>
+    <title>จัดการเว็บไซต์ | Baan Ob Auan</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body class="admin-body">
     <header class="admin-header">
-      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">อบ</span><span class="brand-copy"><strong>網站管理</strong><small>Baan Ob Auan</small></span></a>
-      <a class="text-link" href="index.html">返回網站</a>
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">อบ</span><span class="brand-copy"><strong data-admin-i18n="brand">จัดการเว็บไซต์</strong><small>Baan Ob Auan</small></span></a>
+      <div class="admin-header-actions">
+        <div class="language-switch admin-language-switch" data-admin-i18n-aria="languageLabel" aria-label="เลือกภาษา">
+          <button class="active" type="button" data-admin-lang="th" aria-pressed="true">ไทย</button>
+          <button type="button" data-admin-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-admin-lang="zh" aria-pressed="false">中文</button>
+        </div>
+        <a class="text-link" href="index.html" data-admin-i18n="backToSite">กลับไปที่เว็บไซต์</a>
+      </div>
     </header>
     <main class="admin-main">
       <section class="admin-intro">
-        <div><p class="eyebrow">Content manager</p><h1>更新商品、文章與社群連結</h1></div>
-        <p>這個頁面會把修改直接提交到 GitHub，Zeabur 偵測後會自動重新部署。GitHub 權杖只保留在目前頁面的記憶體，不會寫入網站或瀏覽器儲存空間。</p>
+        <div><p class="eyebrow" data-admin-i18n="eyebrow">ระบบจัดการเนื้อหา</p><h1 data-admin-i18n="introTitle">อัปเดตสินค้า บทความ และช่องทางโซเชียล</h1></div>
+        <p data-admin-i18n="introBody">หน้านี้จะส่งการแก้ไขไปยัง GitHub โดยตรง และ Zeabur จะปรับใช้เว็บไซต์ใหม่โดยอัตโนมัติ โทเคน GitHub จะอยู่ในหน่วยความจำของหน้านี้เท่านั้น และจะไม่ถูกบันทึกลงในเว็บไซต์หรือเบราว์เซอร์</p>
       </section>
 
       <section class="admin-connect admin-panel">
-        <div class="admin-panel-heading"><div><h2>連接 GitHub</h2><p>需要對 repository Contents 有讀寫權限的 fine-grained personal access token。</p></div><span class="connection-state" id="connection-state">尚未連接</span></div>
+        <div class="admin-panel-heading"><div><h2 data-admin-i18n="connectTitle">เชื่อมต่อ GitHub</h2><p data-admin-i18n="connectHelp">ต้องใช้ fine-grained personal access token ที่มีสิทธิ์อ่านและเขียน Contents ของ repository</p></div><span class="connection-state" id="connection-state">ยังไม่ได้เชื่อมต่อ</span></div>
         <div class="admin-grid four">
-          <label><span>擁有者</span><input id="github-owner" value="gn02335338"></label>
+          <label><span data-admin-i18n="owner">เจ้าของ</span><input id="github-owner" value="gn02335338"></label>
           <label><span>Repository</span><input id="github-repo" value="baanobauan"></label>
           <label><span>Branch</span><input id="github-branch" value="main"></label>
-          <label><span>GitHub 權杖</span><input id="github-token" type="password" autocomplete="off" placeholder="github_pat_..."></label>
+          <label><span data-admin-i18n="token">โทเคน GitHub</span><input id="github-token" type="password" autocomplete="off" placeholder="github_pat_..."></label>
         </div>
-        <button class="button dark" id="connect-github" type="button">連接並讀取最新內容</button>
+        <button class="button dark" id="connect-github" type="button" data-admin-i18n="connectButton">เชื่อมต่อและโหลดข้อมูลล่าสุด</button>
       </section>
 
-      <nav class="admin-tabs" aria-label="管理項目">
-        <button class="active" type="button" data-admin-tab="settings">社群設定</button>
-        <button type="button" data-admin-tab="products">商品</button>
-        <button type="button" data-admin-tab="articles">介紹文</button>
-        <button type="button" data-admin-tab="publish">發布</button>
+      <nav class="admin-tabs" data-admin-i18n-aria="tabsLabel" aria-label="เมนูจัดการ">
+        <button class="active" type="button" data-admin-tab="settings" data-admin-i18n="tabSettings">ตั้งค่าโซเชียล</button>
+        <button type="button" data-admin-tab="products" data-admin-i18n="tabProducts">สินค้า</button>
+        <button type="button" data-admin-tab="articles" data-admin-i18n="tabArticles">บทความ</button>
+        <button type="button" data-admin-tab="publish" data-admin-i18n="tabPublish">เผยแพร่</button>
       </nav>
 
       <section class="admin-panel admin-tab-panel active" data-admin-panel="settings">
-        <div class="admin-panel-heading"><div><h2>商家社群連結</h2><p>網址留白的管道不會出現在網站；填入後勾選顯示即可。</p></div></div>
+        <div class="admin-panel-heading"><div><h2 data-admin-i18n="socialTitle">ลิงก์โซเชียลของร้าน</h2><p data-admin-i18n="socialHelp">ช่องทางที่เว้น URL ว่างไว้จะไม่แสดงบนเว็บไซต์ กรอก URL แล้วเลือกแสดงเพื่อเปิดใช้งาน</p></div></div>
         <form id="settings-form" class="admin-form">
           <div id="social-settings" class="social-settings"></div>
-          <button class="button dark" type="submit">儲存設定草稿</button>
+          <button class="button dark" type="submit" data-admin-i18n="saveSettings">บันทึกร่างการตั้งค่า</button>
         </form>
       </section>
 
       <section class="admin-panel admin-tab-panel" data-admin-panel="products">
-        <div class="admin-panel-heading"><div><h2>商品管理</h2><p>可新增、編輯與刪除商品；主推商品會優先顯示在首頁。</p></div><button class="button dark" id="new-product" type="button">新增商品</button></div>
-        <div class="record-toolbar"><label><span>選擇商品</span><select id="product-select"></select></label><button class="danger-button" id="delete-product" type="button">刪除這項商品</button></div>
+        <div class="admin-panel-heading"><div><h2 data-admin-i18n="productsTitle">จัดการสินค้า</h2><p data-admin-i18n="productsHelp">เพิ่ม แก้ไข หรือลบสินค้าได้ สินค้าแนะนำจะแสดงก่อนบนหน้าแรก</p></div><button class="button dark" id="new-product" type="button" data-admin-i18n="newProduct">เพิ่มสินค้า</button></div>
+        <div class="record-toolbar"><label><span data-admin-i18n="selectProduct">เลือกสินค้า</span><select id="product-select"></select></label><button class="danger-button" id="delete-product" type="button" data-admin-i18n="deleteProduct">ลบสินค้านี้</button></div>
         <form id="product-form" class="admin-form">
           <div class="admin-grid four">
-            <label><span>商品代碼（英文）</span><input name="id" required pattern="[a-z0-9-]+"></label>
-            <label><span>分類</span><select name="category"><option value="cake">蛋糕／水果塔</option><option value="pastry">烘焙／派點</option><option value="gift">禮盒</option></select></label>
-            <label><span>參考價格（泰銖）</span><input name="price" type="number" min="0" step="1" required></label>
-            <label class="check-field"><input name="featured" type="checkbox"><span>首頁主推</span></label>
+            <label><span data-admin-i18n="productId">รหัสสินค้า (ภาษาอังกฤษ)</span><input name="id" required pattern="[a-z0-9-]+"></label>
+            <label><span data-admin-i18n="category">หมวดหมู่</span><select name="category"><option value="cake" data-admin-i18n="categoryCake">เค้ก / ทาร์ตผลไม้</option><option value="pastry" data-admin-i18n="categoryPastry">เบเกอรี่ / พาย</option><option value="gift" data-admin-i18n="categoryGift">กล่องของขวัญ</option></select></label>
+            <label><span data-admin-i18n="price">ราคาอ้างอิง (บาท)</span><input name="price" type="number" min="0" step="1" required></label>
+            <label class="check-field"><input name="featured" type="checkbox"><span data-admin-i18n="featuredProduct">สินค้าแนะนำบนหน้าแรก</span></label>
           </div>
-          <label><span>目前圖片路徑</span><input name="image" required></label>
-          <label><span>上傳新圖片（JPG / PNG / WebP）</span><input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+          <label><span data-admin-i18n="imagePath">พาธรูปภาพปัจจุบัน</span><input name="image" required></label>
+          <label><span data-admin-i18n="uploadImage">อัปโหลดรูปภาพใหม่ (JPG / PNG / WebP)</span><input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
           <div class="language-fields">
-            <fieldset><legend>ไทย</legend><label><span>名稱</span><input name="nameTh" required></label><label><span>標籤</span><input name="badgeTh"></label><label><span>介紹</span><textarea name="descTh" rows="4" required></textarea></label></fieldset>
-            <fieldset><legend>English</legend><label><span>名稱</span><input name="nameEn" required></label><label><span>標籤</span><input name="badgeEn"></label><label><span>介紹</span><textarea name="descEn" rows="4" required></textarea></label></fieldset>
-            <fieldset><legend>中文</legend><label><span>名稱</span><input name="nameZh" required></label><label><span>標籤</span><input name="badgeZh"></label><label><span>介紹</span><textarea name="descZh" rows="4" required></textarea></label></fieldset>
+            <fieldset><legend>ไทย</legend><label><span data-admin-i18n="name">ชื่อ</span><input name="nameTh" required></label><label><span data-admin-i18n="badge">ป้ายกำกับ</span><input name="badgeTh"></label><label><span data-admin-i18n="description">รายละเอียด</span><textarea name="descTh" rows="4" required></textarea></label></fieldset>
+            <fieldset><legend>English</legend><label><span data-admin-i18n="name">ชื่อ</span><input name="nameEn" required></label><label><span data-admin-i18n="badge">ป้ายกำกับ</span><input name="badgeEn"></label><label><span data-admin-i18n="description">รายละเอียด</span><textarea name="descEn" rows="4" required></textarea></label></fieldset>
+            <fieldset><legend>中文</legend><label><span data-admin-i18n="name">ชื่อ</span><input name="nameZh" required></label><label><span data-admin-i18n="badge">ป้ายกำกับ</span><input name="badgeZh"></label><label><span data-admin-i18n="description">รายละเอียด</span><textarea name="descZh" rows="4" required></textarea></label></fieldset>
           </div>
-          <button class="button dark" type="submit">儲存商品草稿</button>
+          <button class="button dark" type="submit" data-admin-i18n="saveProduct">บันทึกร่างสินค้า</button>
         </form>
       </section>
 
       <section class="admin-panel admin-tab-panel" data-admin-panel="articles">
-        <div class="admin-panel-heading"><div><h2>介紹文管理</h2><p>最新日期的文章會自動顯示在首頁，不必另外設定首頁內容。</p></div><button class="button dark" id="new-article" type="button">新增介紹文</button></div>
-        <div class="record-toolbar"><label><span>選擇介紹文</span><select id="article-select"></select></label><button class="danger-button" id="delete-article" type="button">刪除這篇文章</button></div>
+        <div class="admin-panel-heading"><div><h2 data-admin-i18n="articlesTitle">จัดการบทความ</h2><p data-admin-i18n="articlesHelp">บทความที่มีวันที่ล่าสุดจะแสดงบนหน้าแรกโดยอัตโนมัติ ไม่ต้องแก้หน้าแรกแยกต่างหาก</p></div><button class="button dark" id="new-article" type="button" data-admin-i18n="newArticle">เพิ่มบทความ</button></div>
+        <div class="record-toolbar"><label><span data-admin-i18n="selectArticle">เลือกบทความ</span><select id="article-select"></select></label><button class="danger-button" id="delete-article" type="button" data-admin-i18n="deleteArticle">ลบบทความนี้</button></div>
         <form id="article-form" class="admin-form">
           <div class="admin-grid three">
-            <label><span>文章代碼（英文）</span><input name="id" required pattern="[a-z0-9-]+"></label>
-            <label><span>發布日期</span><input name="date" type="date" required></label>
-            <label class="check-field"><input name="featured" type="checkbox"><span>標記為主推文章</span></label>
+            <label><span data-admin-i18n="articleId">รหัสบทความ (ภาษาอังกฤษ)</span><input name="id" required pattern="[a-z0-9-]+"></label>
+            <label><span data-admin-i18n="publishDate">วันที่เผยแพร่</span><input name="date" type="date" required></label>
+            <label class="check-field"><input name="featured" type="checkbox"><span data-admin-i18n="featuredArticle">บทความแนะนำ</span></label>
           </div>
-          <label><span>目前封面圖片路徑</span><input name="image" required></label>
-          <label><span>上傳新封面（JPG / PNG / WebP）</span><input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+          <label><span data-admin-i18n="coverPath">พาธรูปภาพหน้าปกปัจจุบัน</span><input name="image" required></label>
+          <label><span data-admin-i18n="uploadCover">อัปโหลดหน้าปกใหม่ (JPG / PNG / WebP)</span><input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
           <div class="language-fields">
-            <fieldset><legend>ไทย</legend><label><span>標題</span><input name="titleTh" required></label><label><span>摘要</span><textarea name="summaryTh" rows="3" required></textarea></label><label><span>內文（段落間空一行）</span><textarea name="bodyTh" rows="10" required></textarea></label></fieldset>
-            <fieldset><legend>English</legend><label><span>標題</span><input name="titleEn" required></label><label><span>摘要</span><textarea name="summaryEn" rows="3" required></textarea></label><label><span>內文（段落間空一行）</span><textarea name="bodyEn" rows="10" required></textarea></label></fieldset>
-            <fieldset><legend>中文</legend><label><span>標題</span><input name="titleZh" required></label><label><span>摘要</span><textarea name="summaryZh" rows="3" required></textarea></label><label><span>內文（段落間空一行）</span><textarea name="bodyZh" rows="10" required></textarea></label></fieldset>
+            <fieldset><legend>ไทย</legend><label><span data-admin-i18n="articleTitle">หัวข้อ</span><input name="titleTh" required></label><label><span data-admin-i18n="summary">สรุป</span><textarea name="summaryTh" rows="3" required></textarea></label><label><span data-admin-i18n="body">เนื้อหา (เว้นหนึ่งบรรทัดระหว่างย่อหน้า)</span><textarea name="bodyTh" rows="10" required></textarea></label></fieldset>
+            <fieldset><legend>English</legend><label><span data-admin-i18n="articleTitle">หัวข้อ</span><input name="titleEn" required></label><label><span data-admin-i18n="summary">สรุป</span><textarea name="summaryEn" rows="3" required></textarea></label><label><span data-admin-i18n="body">เนื้อหา (เว้นหนึ่งบรรทัดระหว่างย่อหน้า)</span><textarea name="bodyEn" rows="10" required></textarea></label></fieldset>
+            <fieldset><legend>中文</legend><label><span data-admin-i18n="articleTitle">หัวข้อ</span><input name="titleZh" required></label><label><span data-admin-i18n="summary">สรุป</span><textarea name="summaryZh" rows="3" required></textarea></label><label><span data-admin-i18n="body">เนื้อหา (เว้นหนึ่งบรรทัดระหว่างย่อหน้า)</span><textarea name="bodyZh" rows="10" required></textarea></label></fieldset>
           </div>
-          <button class="button dark" type="submit">儲存文章草稿</button>
+          <button class="button dark" type="submit" data-admin-i18n="saveArticle">บันทึกร่างบทความ</button>
         </form>
       </section>
 
       <section class="admin-panel admin-tab-panel" data-admin-panel="publish">
-        <div class="admin-panel-heading"><div><h2>發布網站更新</h2><p>確認各頁草稿已儲存後，再一次提交文字與圖片。Zeabur 通常會在數分鐘內完成重新部署。</p></div></div>
+        <div class="admin-panel-heading"><div><h2 data-admin-i18n="publishTitle">เผยแพร่การอัปเดตเว็บไซต์</h2><p data-admin-i18n="publishHelp">ตรวจสอบว่าบันทึกร่างทุกส่วนแล้ว จากนั้นส่งข้อความและรูปภาพพร้อมกัน โดยปกติ Zeabur จะปรับใช้เว็บไซต์ใหม่ภายในไม่กี่นาที</p></div></div>
         <div class="publish-summary" id="publish-summary"></div>
-        <button class="button primary" id="publish-content" type="button">提交到 GitHub 並發布</button>
+        <button class="button primary" id="publish-content" type="button" data-admin-i18n="publishButton">ส่งไปยัง GitHub และเผยแพร่</button>
       </section>
 
       <p class="admin-status" id="admin-status" role="status" aria-live="polite"></p>
     </main>
     <script src="content.js"></script>
+    <script src="admin-i18n.js"></script>
     <script src="admin.js"></script>
   </body>
 </html>

@@ -8,11 +8,11 @@ Multilingual static bakery website deployed from GitHub to Zeabur.
 - `articles.html` / `article.html`: product stories and article detail
 - `products.html`: SEO-friendly product catalogue; checkout is intentionally disabled
 - `contact.html`: social links and feedback-message helper
-- `admin.html`: browser-based content manager that publishes through the GitHub Contents API
+- `admin.html`: Thai-first, trilingual content manager that publishes through the GitHub Contents API
 
 ## Content Management
 
-Public content lives in `content.js`. Open `/admin.html`, enter a fine-grained GitHub personal access token with read/write access to repository Contents, then connect to the repository. Product images uploaded through the manager are stored in `assets/uploads/`.
+Public content lives in `content.js`. Open `/admin.html`, choose Thai, English, or Chinese, enter a fine-grained GitHub personal access token with read/write access to repository Contents, then connect to the repository. Thai is the default manager language, and the last language choice is remembered. Product images uploaded through the manager are stored in `assets/uploads/`.
 
 The token stays in page memory and is not written to local storage or committed to the repository. After publishing, GitHub receives the update and Zeabur redeploys from `main`.
 
