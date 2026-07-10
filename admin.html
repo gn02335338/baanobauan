@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>網站管理 | Baan Ob Auan</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="admin-body">
+    <header class="admin-header">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">อบ</span><span class="brand-copy"><strong>網站管理</strong><small>Baan Ob Auan</small></span></a>
+      <a class="text-link" href="index.html">返回網站</a>
+    </header>
+    <main class="admin-main">
+      <section class="admin-intro">
+        <div><p class="eyebrow">Content manager</p><h1>更新商品、文章與社群連結</h1></div>
+        <p>這個頁面會把修改直接提交到 GitHub，Zeabur 偵測後會自動重新部署。GitHub 權杖只保留在目前頁面的記憶體，不會寫入網站或瀏覽器儲存空間。</p>
+      </section>
+
+      <section class="admin-connect admin-panel">
+        <div class="admin-panel-heading"><div><h2>連接 GitHub</h2><p>需要對 repository Contents 有讀寫權限的 fine-grained personal access token。</p></div><span class="connection-state" id="connection-state">尚未連接</span></div>
+        <div class="admin-grid four">
+          <label><span>擁有者</span><input id="github-owner" value="gn02335338"></label>
+          <label><span>Repository</span><input id="github-repo" value="baanobauan"></label>
+          <label><span>Branch</span><input id="github-branch" value="main"></label>
+          <label><span>GitHub 權杖</span><input id="github-token" type="password" autocomplete="off" placeholder="github_pat_..."></label>
+        </div>
+        <button class="button dark" id="connect-github" type="button">連接並讀取最新內容</button>
+      </section>
+
+      <nav class="admin-tabs" aria-label="管理項目">
+        <button class="active" type="button" data-admin-tab="settings">社群設定</button>
+        <button type="button" data-admin-tab="products">商品</button>
+        <button type="button" data-admin-tab="articles">介紹文</button>
+        <button type="button" data-admin-tab="publish">發布</button>
+      </nav>
+
+      <section class="admin-panel admin-tab-panel active" data-admin-panel="settings">
+        <div class="admin-panel-heading"><div><h2>商家社群連結</h2><p>網址留白的管道不會出現在網站；填入後勾選顯示即可。</p></div></div>
+        <form id="settings-form" class="admin-form">
+          <div id="social-settings" class="social-settings"></div>
+          <button class="button dark" type="submit">儲存設定草稿</button>
+        </form>
+      </section>
+
+      <section class="admin-panel admin-tab-panel" data-admin-panel="products">
+        <div class="admin-panel-heading"><div><h2>商品管理</h2><p>可新增、編輯與刪除商品；主推商品會優先顯示在首頁。</p></div><button class="button dark" id="new-product" type="button">新增商品</button></div>
+        <div class="record-toolbar"><label><span>選擇商品</span><select id="product-select"></select></label><button class="danger-button" id="delete-product" type="button">刪除這項商品</button></div>
+        <form id="product-form" class="admin-form">
+          <div class="admin-grid four">
+            <label><span>商品代碼（英文）</span><input name="id" required pattern="[a-z0-9-]+"></label>
+            <label><span>分類</span><select name="category"><option value="cake">蛋糕／水果塔</option><option value="pastry">烘焙／派點</option><option value="gift">禮盒</option></select></label>
+            <label><span>參考價格（泰銖）</span><input name="price" type="number" min="0" step="1" required></label>
+            <label class="check-field"><input name="featured" type="checkbox"><span>首頁主推</span></label>
+          </div>
+          <label><span>目前圖片路徑</span><input name="image" required></label>
+          <label><span>上傳新圖片（JPG / PNG / WebP）</span><input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+          <div class="language-fields">
+            <fieldset><legend>ไทย</legend><label><span>名稱</span><input name="nameTh" required></label><label><span>標籤</span><input name="badgeTh"></label><label><span>介紹</span><textarea name="descTh" rows="4" required></textarea></label></fieldset>
+            <fieldset><legend>English</legend><label><span>名稱</span><input name="nameEn" required></label><label><span>標籤</span><input name="badgeEn"></label><label><span>介紹</span><textarea name="descEn" rows="4" required></textarea></label></fieldset>
+            <fieldset><legend>中文</legend><label><span>名稱</span><input name="nameZh" required></label><label><span>標籤</span><input name="badgeZh"></label><label><span>介紹</span><textarea name="descZh" rows="4" required></textarea></label></fieldset>
+          </div>
+          <button class="button dark" type="submit">儲存商品草稿</button>
+        </form>
+      </section>
+
+      <section class="admin-panel admin-tab-panel" data-admin-panel="articles">
+        <div class="admin-panel-heading"><div><h2>介紹文管理</h2><p>最新日期的文章會自動顯示在首頁，不必另外設定首頁內容。</p></div><button class="button dark" id="new-article" type="button">新增介紹文</button></div>
+        <div class="record-toolbar"><label><span>選擇介紹文</span><select id="article-select"></select></label><button class="danger-button" id="delete-article" type="button">刪除這篇文章</button></div>
+        <form id="article-form" class="admin-form">
+          <div class="admin-grid three">
+            <label><span>文章代碼（英文）</span><input name="id" required pattern="[a-z0-9-]+"></label>
+            <label><span>發布日期</span><input name="date" type="date" required></label>
+            <label class="check-field"><input name="featured" type="checkbox"><span>標記為主推文章</span></label>
+          </div>
+          <label><span>目前封面圖片路徑</span><input name="image" required></label>
+          <label><span>上傳新封面（JPG / PNG / WebP）</span><input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+          <div class="language-fields">
+            <fieldset><legend>ไทย</legend><label><span>標題</span><input name="titleTh" required></label><label><span>摘要</span><textarea name="summaryTh" rows="3" required></textarea></label><label><span>內文（段落間空一行）</span><textarea name="bodyTh" rows="10" required></textarea></label></fieldset>
+            <fieldset><legend>English</legend><label><span>標題</span><input name="titleEn" required></label><label><span>摘要</span><textarea name="summaryEn" rows="3" required></textarea></label><label><span>內文（段落間空一行）</span><textarea name="bodyEn" rows="10" required></textarea></label></fieldset>
+            <fieldset><legend>中文</legend><label><span>標題</span><input name="titleZh" required></label><label><span>摘要</span><textarea name="summaryZh" rows="3" required></textarea></label><label><span>內文（段落間空一行）</span><textarea name="bodyZh" rows="10" required></textarea></label></fieldset>
+          </div>
+          <button class="button dark" type="submit">儲存文章草稿</button>
+        </form>
+      </section>
+
+      <section class="admin-panel admin-tab-panel" data-admin-panel="publish">
+        <div class="admin-panel-heading"><div><h2>發布網站更新</h2><p>確認各頁草稿已儲存後，再一次提交文字與圖片。Zeabur 通常會在數分鐘內完成重新部署。</p></div></div>
+        <div class="publish-summary" id="publish-summary"></div>
+        <button class="button primary" id="publish-content" type="button">提交到 GitHub 並發布</button>
+      </section>
+
+      <p class="admin-status" id="admin-status" role="status" aria-live="polite"></p>
+    </main>
+    <script src="content.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

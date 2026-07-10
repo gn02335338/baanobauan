@@ -1,26 +1,23 @@
 # บ้านอบอวล | Baan Ob Auan
 
-Static promotional and online-order page for บ้านอบอวล | Baan Ob Auan.
+Multilingual static bakery website deployed from GitHub to Zeabur.
 
-## Deploy To Zeabur From GitHub
+## Pages
 
-1. Create a new GitHub repository.
-2. Put this folder's files at the repository root, so `index.html` is directly in the root.
-3. Commit and push:
+- `index.html`: homepage with featured products, latest story, video, and social links
+- `articles.html` / `article.html`: product stories and article detail
+- `products.html`: SEO-friendly product catalogue; checkout is intentionally disabled
+- `contact.html`: social links and feedback-message helper
+- `admin.html`: browser-based content manager that publishes through the GitHub Contents API
 
-   ```powershell
-   git init
-   git add .
-   git commit -m "Initial Baan Ob Auan website"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   git push -u origin main
-   ```
+## Content Management
 
-4. In Zeabur, create a project, create a service from GitHub, and select this repository.
-5. Zeabur should detect it as a static site because the root contains `index.html`.
-6. After deployment, open the service's Domains tab and generate a domain or bind a custom domain.
+Public content lives in `content.js`. Open `/admin.html`, enter a fine-grained GitHub personal access token with read/write access to repository Contents, then connect to the repository. Product images uploaded through the manager are stored in `assets/uploads/`.
 
-## Edit Products
+The token stays in page memory and is not written to local storage or committed to the repository. After publishing, GitHub receives the update and Zeabur redeploys from `main`.
 
-Products, prices, and translations are in `app.js`. Images are in `assets/`.
+## SEO
+
+Each public page has a unique title and description, semantic headings, Open Graph metadata, internal links, image alt text, and Schema.org structured data for the bakery, products, and articles. `robots.txt` excludes the management page from indexing.
+
+Add a `sitemap.xml` after a permanent production domain has been chosen, because sitemap URLs must be absolute.

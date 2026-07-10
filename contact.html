@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ติดต่อบ้านอบอวล</title>
+    <meta name="description" content="ติดต่อ สอบถามสินค้า และส่งความคิดเห็นถึงบ้านอบอวล">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ติดต่อบ้านอบอวล">
+    <meta property="og:description" content="สอบถามสินค้าและติดต่อบ้านอบอวล">
+    <meta property="og:image" content="assets/tiktok-shop-display.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-page="contact">
+    <header class="site-header" id="site-header"></header>
+    <main>
+      <section class="page-hero contact-hero">
+        <p class="eyebrow" data-t="contact.eyebrow">Contact us</p>
+        <h1 data-t="contact.title">Ask about a sweet, share feedback, or tell us what you are looking for</h1>
+        <p data-t="contact.copy">For availability and reservations, contact the shop through social media.</p>
+      </section>
+      <section class="section contact-layout">
+        <section class="contact-channels">
+          <p class="eyebrow" data-t="contact.socialTitle">Shop channels</p>
+          <div class="social-grid" id="contact-socials"></div>
+          <figure class="contact-photo">
+            <img src="assets/tiktok-shop-display.png" alt="Baan Ob Auan bakery counter" loading="lazy">
+          </figure>
+        </section>
+        <section class="feedback-panel">
+          <h2 data-t="contact.feedbackTitle">Feedback and suggestions</h2>
+          <p data-t="contact.feedbackCopy">This form formats and copies your message. The website does not store it.</p>
+          <form class="feedback-form" id="feedback-form">
+            <label><span data-t="form.name">Name</span><input type="text" name="name" autocomplete="name"></label>
+            <label><span data-t="form.contact">Reply contact</span><input type="text" name="contact" autocomplete="email"></label>
+            <label><span data-t="form.topic">Topic</span><select name="topic"><option data-t="form.topicProduct">Product question</option><option data-t="form.topicWebsite">Website suggestion</option><option data-t="form.topicOther">Other</option></select></label>
+            <label><span data-t="form.message">Message</span><textarea name="message" rows="7" required></textarea></label>
+            <button class="button dark" type="submit" data-t="form.submit">Copy feedback</button>
+            <p class="form-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </section>
+    </main>
+    <footer class="site-footer" id="site-footer"></footer>
+    <script src="content.js"></script>
+    <script src="site.js"></script>
+    <script src="pages.js"></script>
+  </body>
+</html>

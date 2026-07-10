@@ -1,222 +1,89 @@
 <!doctype html>
 <html lang="th">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>บ้านอบอวล | Baan Ob Auan</title>
-    <meta
-      name="description"
-      content="บ้านอบอวล | Baan Ob Auan bakery storefront for fruit cakes, pudding cups, pastries, and online cake orders."
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="ขนมอบสดใหม่ ทาร์ตผลไม้ เค้กครีมสด และพายจากบ้านอบอวล">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="บ้านอบอวล | Baan Ob Auan">
+    <meta property="og:description" content="ขนมอบสดใหม่จากบ้านอบอวล">
+    <meta property="og:image" content="assets/hero-small-products.png">
+    <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="บ้านอบอวล | Baan Ob Auan home">
-        <span class="brand-mark">อบ</span>
-        <span>
-          <strong>บ้านอบอวล</strong>
-          <small>Baan Ob Auan · @baanobauan</small>
-        </span>
-      </a>
-
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#promo" data-i18n="nav.promo">Video</a>
-        <a href="#menu" data-i18n="nav.menu">Menu</a>
-        <a href="#story" data-i18n="nav.story">Story</a>
-        <a href="#order" data-i18n="nav.order">Order</a>
-      </nav>
-
-      <div class="language-switch" aria-label="Language">
-        <button type="button" data-lang="th">ไทย</button>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="zh">中文</button>
-      </div>
-    </header>
-
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <img class="hero-image" src="assets/hero-small-products.png" alt="" />
-        <div class="hero-shade"></div>
+  <body data-page="home">
+    <header class="site-header" id="site-header"></header>
+    <main>
+      <section class="hero">
+        <img class="hero-image" src="assets/hero-small-products.png" alt="Baan Ob Auan small fruit cakes and pastries">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-          <p class="eyebrow" data-i18n="hero.eyebrow">Fresh bakery favorites</p>
-          <h1 id="hero-title">บ้านอบอวล | Baan Ob Auan</h1>
-          <p class="hero-copy" data-i18n="hero.copy">
-            Signature fruit tart, fresh cream cakes, pudding cups, and golden pastries ready for online orders.
-          </p>
+          <p class="eyebrow" data-t="home.heroEyebrow">Fresh from the bakery counter</p>
+          <h1 data-t="home.heroTitle">Small sweets that make an ordinary day feel warmer</h1>
+          <p class="hero-copy" data-t="home.heroCopy">Fruit tarts, cakes, custard cups, and pastries made in small batches.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#menu" data-i18n="hero.ctaPrimary">Shop signatures</a>
-            <a class="button secondary" href="https://www.tiktok.com/@baanobauan" target="_blank" rel="noreferrer" data-i18n="hero.ctaSecondary">TikTok</a>
+            <a class="button primary" href="#featured" data-t="home.heroProducts">See featured products</a>
+            <a class="button ghost" href="#social" data-t="home.heroSocial">Follow the shop</a>
           </div>
         </div>
       </section>
 
-      <section class="quick-strip" aria-label="Bakery highlights">
-        <div>
-          <strong data-i18n="stats.oneTitle">Daily trays</strong>
-          <span data-i18n="stats.oneText">Small batches from the display case</span>
-        </div>
-        <div>
-          <strong data-i18n="stats.twoTitle">Fruit cakes</strong>
-          <span data-i18n="stats.twoText">Grape, blueberry, and strawberry</span>
-        </div>
-        <div>
-          <strong data-i18n="stats.threeTitle">Order ahead</strong>
-          <span data-i18n="stats.threeText">Reserve before the counter sells out</span>
-        </div>
+      <section class="trust-strip" aria-label="Bakery highlights">
+        <div><strong data-t="home.freshTitle">Made in small batches</strong><span data-t="home.freshCopy">The selection can change daily.</span></div>
+        <div><strong data-t="home.trilingualTitle">Three languages</strong><span data-t="home.trilingualCopy">Thai, English, and Chinese.</span></div>
+        <div><strong data-t="home.reserveTitle">Ask before visiting</strong><span data-t="home.reserveCopy">Confirm availability on TikTok.</span></div>
       </section>
 
-      <section class="section promo-section" id="promo" aria-labelledby="promo-title">
-        <div class="promo-video-frame">
-          <video
-            src="assets/baanobauan-promo.mp4"
-            poster="assets/tiktok-shop-display.png"
-            autoplay
-            muted
-            loop
-            playsinline
-            controls
-            preload="metadata"
-          >
-            <span data-i18n="promo.videoFallback">Your browser does not support this promotional video.</span>
+      <section class="section" id="featured">
+        <div class="section-heading heading-row">
+          <div>
+            <p class="eyebrow" data-t="home.featuredEyebrow">From the counter</p>
+            <h2 data-t="home.featuredTitle">Today’s recommended sweets</h2>
+            <p data-t="home.featuredCopy">Real products with clear photos and searchable details.</p>
+          </div>
+          <a class="text-link" href="products.html" data-t="common.allProducts">View all products</a>
+        </div>
+        <div class="product-grid home-products" id="featured-products"></div>
+      </section>
+
+      <section class="section video-feature">
+        <div class="video-frame">
+          <video src="assets/baanobauan-promo.mp4" poster="assets/tiktok-shop-display.png" autoplay muted loop playsinline controls preload="metadata">
+            <span data-t="home.videoFallback">Your browser does not support this video.</span>
           </video>
         </div>
-        <div class="promo-copy">
-          <p class="eyebrow" data-i18n="promo.eyebrow">Fresh from the counter</p>
-          <h2 id="promo-title" data-i18n="promo.title">See today’s sweets before you order</h2>
-          <p data-i18n="promo.copy">
-            A short shop video gives customers the real counter feeling before they choose fruit tarts, pudding cups, and pastries.
-          </p>
-          <ul class="promo-points" aria-label="Promotional video highlights">
-            <li data-i18n="promo.pointOne">Shows the actual shop atmosphere</li>
-            <li data-i18n="promo.pointTwo">Builds trust before online ordering</li>
-            <li data-i18n="promo.pointThree">Pairs naturally with TikTok visitors</li>
-          </ul>
-          <a class="button primary" href="#menu" data-i18n="promo.cta">Choose from the menu</a>
+        <div class="feature-copy">
+          <p class="eyebrow" data-t="home.videoEyebrow">The real counter</p>
+          <h2 data-t="home.videoTitle">See the sweets up close before messaging</h2>
+          <p data-t="home.videoCopy">A short video gives a better sense of size, color, and the bakery atmosphere.</p>
+          <a class="button dark" href="products.html" data-t="common.allProducts">View all products</a>
         </div>
       </section>
 
-      <section class="section featured-section" aria-labelledby="featured-title">
-        <div class="featured-media" aria-label="Signature mixed fruit tart photo">
-          <img src="assets/mixed-fruit-tart-ai.png" alt="Signature mixed fruit tart with green grape, strawberry, blueberry, cream, and citrus jam" />
-        </div>
-        <div class="featured-copy">
-          <p class="eyebrow" data-i18n="featured.eyebrow">New signature</p>
-          <h2 id="featured-title" data-i18n="featured.title">Signature mixed fruit tart</h2>
-          <p data-i18n="featured.copy">
-            Crisp tart shell, soft cream, green grape, strawberry, blueberry, and a small citrus jam accent.
-          </p>
-          <div class="featured-tags" aria-label="Featured product details">
-            <span data-i18n="featured.tagOne">Fresh fruit topping</span>
-            <span data-i18n="featured.tagTwo">Single-serve mini tart</span>
-            <span data-i18n="featured.tagThree">Best reserved ahead</span>
+      <section class="article-band">
+        <div class="section article-feature-wrap">
+          <div class="section-heading compact-heading">
+            <p class="eyebrow" data-t="home.articleEyebrow">Latest story</p>
+            <h2 data-t="home.articleTitle">Read the story behind a featured sweet</h2>
+            <p data-t="home.articleCopy">The newest story appears here and remains in the story archive.</p>
+            <a class="text-link" href="articles.html" data-t="common.allArticles">View all stories</a>
           </div>
-          <a class="button primary" href="#menu" data-i18n="featured.cta">Add from the menu</a>
+          <div id="latest-article"></div>
         </div>
       </section>
 
-      <section class="section menu-section" id="menu" aria-labelledby="menu-title">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="menu.eyebrow">Online cake counter</p>
-          <h2 id="menu-title" data-i18n="menu.title">Choose from today's display</h2>
-          <p data-i18n="menu.copy">
-            Products are based on the TikTok counter photo. Stock can change by day.
-          </p>
+      <section class="section social-section" id="social">
+        <div class="section-heading compact-heading">
+          <p class="eyebrow" data-t="home.socialEyebrow">Follow and ask</p>
+          <h2 data-t="home.socialTitle">Find Baan Ob Auan on social media</h2>
+          <p data-t="home.socialCopy">See new sweets and ask about availability through the shop’s channels.</p>
         </div>
-
-        <div class="category-tabs" role="tablist" aria-label="Product categories">
-          <button type="button" class="active" data-filter="all" data-i18n="filters.all">All</button>
-          <button type="button" data-filter="cake" data-i18n="filters.cake">Cakes</button>
-          <button type="button" data-filter="pastry" data-i18n="filters.pastry">Pastry</button>
-          <button type="button" data-filter="gift" data-i18n="filters.gift">Gift sets</button>
-        </div>
-
-        <div class="product-grid" id="product-grid" aria-live="polite"></div>
-      </section>
-
-      <section class="section story-section" id="story" aria-labelledby="story-title">
-        <div class="story-copy">
-          <p class="eyebrow" data-i18n="story.eyebrow">From TikTok to checkout</p>
-          <h2 id="story-title" data-i18n="story.title">A storefront that matches the real counter</h2>
-          <p data-i18n="story.copy">
-            The product list uses the cakes and pastries visible in the screenshot, so customers recognize what they saw in the video.
-          </p>
-          <ul class="check-list">
-            <li data-i18n="story.pointOne">Thai, English, and Chinese language switching</li>
-            <li data-i18n="story.pointTwo">Cart summary for fast direct-message ordering</li>
-            <li data-i18n="story.pointThree">Counter photo and product crops from the shop screenshot</li>
-          </ul>
-        </div>
-        <figure class="counter-photo">
-          <a class="counter-photo-link" href="https://www.tiktok.com/@baanobauan/photo/7656443867604077842" target="_blank" rel="noreferrer">
-            <img src="assets/tiktok-shop-display.png" alt="บ้านอบอวล | Baan Ob Auan dessert counter with fruit cakes and pastries" />
-          </a>
-          <figcaption data-i18n="story.caption">Reference counter image from the provided TikTok screenshot.</figcaption>
-        </figure>
-      </section>
-
-      <section class="section order-section" id="order" aria-labelledby="order-title">
-        <div class="section-heading compact">
-          <p class="eyebrow" data-i18n="order.eyebrow">Reserve your box</p>
-          <h2 id="order-title" data-i18n="order.title">Send an order request</h2>
-          <p data-i18n="order.copy">
-            Add items to the cart, fill in your details, then copy the order for TikTok or LINE.
-          </p>
-        </div>
-
-        <div class="checkout-layout">
-          <section class="cart-panel" aria-labelledby="cart-title">
-            <div class="panel-heading">
-              <h3 id="cart-title" data-i18n="cart.title">Your cart</h3>
-              <button type="button" class="text-button" id="clear-cart" data-i18n="cart.clear">Clear</button>
-            </div>
-            <div class="cart-lines" id="cart-lines"></div>
-            <div class="cart-empty" id="cart-empty" data-i18n="cart.empty">Add a cake to start your order.</div>
-            <div class="cart-total">
-              <span data-i18n="cart.total">Estimated total</span>
-              <strong id="cart-total">฿0</strong>
-            </div>
-          </section>
-
-          <form class="order-form" id="order-form">
-            <label>
-              <span data-i18n="form.name">Name</span>
-              <input name="name" type="text" autocomplete="name" required />
-            </label>
-            <label>
-              <span data-i18n="form.phone">Phone or chat ID</span>
-              <input name="phone" type="text" autocomplete="tel" required />
-            </label>
-            <label>
-              <span data-i18n="form.method">Pickup or delivery</span>
-              <select name="method">
-                <option value="pickup" data-i18n="form.pickup">Pickup</option>
-                <option value="delivery" data-i18n="form.delivery">Delivery</option>
-              </select>
-            </label>
-            <label>
-              <span data-i18n="form.date">Date and time</span>
-              <input name="date" type="text" data-i18n-placeholder="form.datePlaceholder" placeholder="Today, 18:00" />
-            </label>
-            <label class="full">
-              <span data-i18n="form.notes">Notes</span>
-              <textarea name="notes" rows="4" data-i18n-placeholder="form.notesPlaceholder" placeholder="Birthday message, quantity changes, delivery area"></textarea>
-            </label>
-            <div class="form-actions">
-              <button class="button primary" type="submit" data-i18n="form.copyOrder">Copy order message</button>
-              <a class="button secondary" href="https://www.tiktok.com/@baanobauan" target="_blank" rel="noreferrer" data-i18n="form.openTikTok">Open TikTok</a>
-            </div>
-            <p class="order-status" id="order-status" role="status" aria-live="polite"></p>
-          </form>
-        </div>
+        <div class="social-grid" id="social-links"></div>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <span data-i18n="footer.brand">บ้านอบอวล | Baan Ob Auan online cake counter</span>
-      <a href="https://www.tiktok.com/@baanobauan" target="_blank" rel="noreferrer">@baanobauan</a>
-    </footer>
-
-    <script src="app.js"></script>
+    <footer class="site-footer" id="site-footer"></footer>
+    <script src="content.js"></script>
+    <script src="site.js"></script>
+    <script src="pages.js"></script>
   </body>
 </html>
