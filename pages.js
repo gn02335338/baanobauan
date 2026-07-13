@@ -41,12 +41,39 @@
     `;
   }
 
+  function showcaseVisual(product, index) {
+    return `
+      <figure class="showcase-visual scene-tone-${index % 4}${index === 0 ? " active" : ""}" data-showcase-visual="${index}">
+        <img src="${B.escapeHtml(product.image)}" alt="${B.escapeHtml(B.localize(product.name))}" loading="${index === 0 ? "eager" : "lazy"}">
+      </figure>
+    `;
+  }
+
+  function showcaseStep(product, index) {
+    return `
+      <article class="showcase-step${index === 0 ? " active" : ""}" data-showcase-step="${index}">
+        <span class="showcase-step-number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+        <span class="product-badge">${B.escapeHtml(B.localize(product.badge))}</span>
+        <h3>${B.escapeHtml(B.localize(product.name))}</h3>
+        <p>${B.escapeHtml(B.localize(product.desc))}</p>
+        <div class="showcase-step-footer">
+          <span class="price"><small>${B.escapeHtml(B.t("common.priceFrom"))}</small> ฿${B.money(product.price)}</span>
+          <a class="text-link" href="products.html#product-${B.escapeHtml(product.id)}">${B.escapeHtml(B.t("home.productDetail"))}<span aria-hidden="true"> →</span></a>
+        </div>
+      </article>
+    `;
+  }
+
   function renderHome() {
-    const products = B.content.products.filter((product) => product.featured).slice(0, 4);
+    const featured = B.content.products.filter((product) => product.featured);
+    const products = (featured.length ? featured : B.content.products).slice(0, 4);
     const latest = [...B.content.articles].sort((a, b) => b.date.localeCompare(a.date))[0];
-    document.querySelector("#featured-products").innerHTML = products.map(productCard).join("");
+    document.querySelector("#showcase-visuals").innerHTML = products.map(showcaseVisual).join("");
+    document.querySelector("#featured-products").innerHTML = products.map(showcaseStep).join("");
+    document.querySelector("#showcase-total").textContent = String(products.length).padStart(2, "0");
     document.querySelector("#latest-article").innerHTML = articleCard(latest, true);
     document.querySelector("#social-links").innerHTML = B.socialCards();
+    document.dispatchEvent(new CustomEvent("baan:home-rendered"));
   }
 
   function renderProducts() {

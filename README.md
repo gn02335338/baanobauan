@@ -4,7 +4,7 @@ Multilingual static bakery website deployed from GitHub to Zeabur.
 
 ## Pages
 
-- `index.html`: homepage with featured products, latest story, video, and social links
+- `index.html`: immersive scrolling homepage with a full-screen counter scene, scroll-driven featured products, video, latest story, and social links
 - `articles.html` / `article.html`: product stories and article detail
 - `products.html`: SEO-friendly product catalogue; checkout is intentionally disabled
 - `contact.html`: social links and feedback-message helper

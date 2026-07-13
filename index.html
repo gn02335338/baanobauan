@@ -11,79 +11,99 @@
     <meta property="og:image" content="assets/hero-small-products.png">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body data-page="home">
+  <body data-page="home" class="home-immersive">
     <header class="site-header" id="site-header"></header>
-    <main>
-      <section class="hero">
-        <img class="hero-image" src="assets/hero-small-products.png" alt="Baan Ob Auan small fruit cakes and pastries">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
+    <main class="immersive-main">
+      <section class="immersive-hero" id="top" data-hero>
+        <div class="immersive-hero-media">
+          <img src="assets/hero-small-products.png" alt="Baan Ob Auan fruit tarts, custard cups, cakes, and pastries" fetchpriority="high">
+        </div>
+        <div class="immersive-hero-shade"></div>
+        <div class="immersive-hero-content">
           <p class="eyebrow" data-t="home.heroEyebrow">Fresh from the bakery counter</p>
           <h1 data-t="home.heroTitle">Small sweets that make an ordinary day feel warmer</h1>
-          <p class="hero-copy" data-t="home.heroCopy">Fruit tarts, cakes, custard cups, and pastries made in small batches.</p>
+          <p class="immersive-hero-copy" data-t="home.heroCopy">Fruit tarts, cakes, custard cups, and pastries made in small batches.</p>
           <div class="hero-actions">
             <a class="button primary" href="#featured" data-t="home.heroProducts">See featured products</a>
             <a class="button ghost" href="#social" data-t="home.heroSocial">Follow the shop</a>
           </div>
         </div>
+        <a class="scroll-cue" href="#bakery-story"><span data-t="home.scrollCue">Scroll to explore</span><span class="scroll-cue-line" aria-hidden="true"></span></a>
       </section>
 
-      <section class="trust-strip" aria-label="Bakery highlights">
-        <div><strong data-t="home.freshTitle">Made in small batches</strong><span data-t="home.freshCopy">The selection can change daily.</span></div>
-        <div><strong data-t="home.trilingualTitle">Three languages</strong><span data-t="home.trilingualCopy">Thai, English, and Chinese.</span></div>
-        <div><strong data-t="home.reserveTitle">Ask before visiting</strong><span data-t="home.reserveCopy">Confirm availability on TikTok.</span></div>
+      <section class="bakery-manifesto" id="bakery-story">
+        <div class="bakery-manifesto-inner" data-reveal>
+          <p class="eyebrow" data-t="home.manifestoEyebrow">A little warmth from the counter</p>
+          <h2 data-t="home.manifestoTitle">Baked in small batches. Chosen one colorful piece at a time.</h2>
+          <p class="manifesto-copy" data-t="home.manifestoCopy">The selection changes with the day, but the idea stays simple: approachable sweets, fresh fruit, and a counter worth stopping for.</p>
+        </div>
+        <div class="immersive-trust" aria-label="Bakery highlights" data-reveal>
+          <div><strong data-t="home.freshTitle">Made in small batches</strong><span data-t="home.freshCopy">The selection can change daily.</span></div>
+          <div><strong data-t="home.trilingualTitle">Three languages</strong><span data-t="home.trilingualCopy">Thai, English, and Chinese.</span></div>
+          <div><strong data-t="home.reserveTitle">Ask before visiting</strong><span data-t="home.reserveCopy">Confirm availability on TikTok.</span></div>
+        </div>
       </section>
 
-      <section class="section" id="featured">
-        <div class="section-heading heading-row">
+      <section class="immersive-showcase" id="featured">
+        <header class="showcase-intro" data-reveal>
           <div>
             <p class="eyebrow" data-t="home.featuredEyebrow">From the counter</p>
             <h2 data-t="home.featuredTitle">Today’s recommended sweets</h2>
-            <p data-t="home.featuredCopy">Real products with clear photos and searchable details.</p>
+            <p data-t="home.showcaseScroll">Scroll to meet each sweet, one tray at a time.</p>
           </div>
           <a class="text-link" href="products.html" data-t="common.allProducts">View all products</a>
+        </header>
+        <div class="showcase-layout">
+          <div class="showcase-sticky" aria-live="polite">
+            <div class="showcase-visuals" id="showcase-visuals"></div>
+            <div class="showcase-counter" aria-hidden="true"><span id="showcase-current">01</span><span> / </span><span id="showcase-total">04</span></div>
+          </div>
+          <div class="showcase-steps" id="featured-products"></div>
         </div>
-        <div class="product-grid home-products" id="featured-products"></div>
       </section>
 
-      <section class="section video-feature">
-        <div class="video-frame">
+      <section class="immersive-video" data-reveal>
+        <div class="immersive-video-media">
           <video src="assets/baanobauan-promo.mp4" poster="assets/tiktok-shop-display.png" autoplay muted loop playsinline controls preload="metadata">
             <span data-t="home.videoFallback">Your browser does not support this video.</span>
           </video>
         </div>
-        <div class="feature-copy">
+        <div class="immersive-video-shade"></div>
+        <div class="immersive-video-copy">
           <p class="eyebrow" data-t="home.videoEyebrow">The real counter</p>
           <h2 data-t="home.videoTitle">See the sweets up close before messaging</h2>
           <p data-t="home.videoCopy">A short video gives a better sense of size, color, and the bakery atmosphere.</p>
-          <a class="button dark" href="products.html" data-t="common.allProducts">View all products</a>
+          <a class="button primary" href="products.html" data-t="common.allProducts">View all products</a>
         </div>
       </section>
 
-      <section class="article-band">
-        <div class="section article-feature-wrap">
-          <div class="section-heading compact-heading">
+      <section class="article-journey">
+        <div class="section article-journey-inner">
+          <div class="section-heading compact-heading" data-reveal>
             <p class="eyebrow" data-t="home.articleEyebrow">Latest story</p>
             <h2 data-t="home.articleTitle">Read the story behind a featured sweet</h2>
             <p data-t="home.articleCopy">The newest story appears here and remains in the story archive.</p>
             <a class="text-link" href="articles.html" data-t="common.allArticles">View all stories</a>
           </div>
-          <div id="latest-article"></div>
+          <div id="latest-article" data-reveal></div>
         </div>
       </section>
 
-      <section class="section social-section" id="social">
-        <div class="section-heading compact-heading">
-          <p class="eyebrow" data-t="home.socialEyebrow">Follow and ask</p>
-          <h2 data-t="home.socialTitle">Find Baan Ob Auan on social media</h2>
-          <p data-t="home.socialCopy">See new sweets and ask about availability through the shop’s channels.</p>
+      <section class="immersive-social" id="social">
+        <div class="immersive-social-inner">
+          <div class="section-heading compact-heading" data-reveal>
+            <p class="eyebrow" data-t="home.socialEyebrow">Follow and ask</p>
+            <h2 data-t="home.socialTitle">Find Baan Ob Auan on social media</h2>
+            <p data-t="home.socialCopy">See new sweets and ask about availability through the shop’s channels.</p>
+          </div>
+          <div class="social-grid" id="social-links" data-reveal></div>
         </div>
-        <div class="social-grid" id="social-links"></div>
       </section>
     </main>
     <footer class="site-footer" id="site-footer"></footer>
     <script src="content.js"></script>
     <script src="site.js"></script>
     <script src="pages.js"></script>
+    <script src="immersive.js"></script>
   </body>
 </html>
